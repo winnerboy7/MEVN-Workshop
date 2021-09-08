@@ -2,6 +2,10 @@ const router = require('express').Router()
 const Customer = require('../model/model.customer')
 
 router.get('/', async (req, res) => {
+  
+  console.log('jwt data')
+  console.log(res.locals)
+
   try {
     const customers = await Customer.find()
     res.json(customers)

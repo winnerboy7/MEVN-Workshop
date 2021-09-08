@@ -15,8 +15,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/employees', require('./router/router.employee'))
-app.use('/customers', logger, require('./router/router.customer'))
-app.use('/users', auth, require('./router/router.user'))
+app.use('/customers', auth, require('./router/router.customer'))
+app.use('/users', require('./router/router.user'))
 app.use('/files', require('./router/router.file'))
 
 app.use((req, res) => {

@@ -30,7 +30,7 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ username: u.username }, select)
 
     if (user && user.verifyPassword(u.password)) {
-      const token = jwt.sign({ username: user.username, role: user.role }, secret)
+      const token = jwt.sign({ username: user.username, role: user.role }, secret, { expiresIn: '2h' })
       res.json({ token })
     } else {
       res.status(401).json({ message: "Invalid username or password" })

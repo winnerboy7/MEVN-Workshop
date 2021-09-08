@@ -14,7 +14,6 @@ const UserSchema = new mongoose.Schema(
 )
 
 UserSchema.pre("save", async function (next) {
-  console.log(this.password)
   const salt = bcrypt.genSaltSync()
   this.password = bcrypt.hashSync(this.password, salt)
 
@@ -22,7 +21,6 @@ UserSchema.pre("save", async function (next) {
 })
 
 UserSchema.methods.verifyPassword = function (plainPassword) {
-  console.log(plainPassword, this.password)
   return bcrypt.compareSync(plainPassword, this.password)
 }
 
