@@ -26,9 +26,8 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const u = req.body
-    const user = await User.findOne({ username: u.username })
-
-    // console.log(u)
+    const select = {username : 1, password: 1, role: 1}
+    const user = await User.findOne({ username: u.username }, select)
 
     if (user && user.verifyPassword(u.password)) {
       const token = jwt.sign({ username: user.username, role: user.role }, secret)

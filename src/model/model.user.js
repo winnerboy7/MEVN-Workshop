@@ -4,8 +4,8 @@ const bcrypt = require("bcrypt")
 const UserSchema = new mongoose.Schema(
   {
     username: { type: String, unique: true },
-    // password: { type: String, select: false },
-    password: { type: String },
+    password: { type: String, select: false },
+    // password: { type: String },
     role: { type: String, enum: ["Admin", "Area", "User"], default: "User" },
     name: String,
     surname: String,

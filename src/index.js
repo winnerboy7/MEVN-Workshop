@@ -6,7 +6,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true}))
 app.use(express.json())
 
-// require('./setup.mongoose')
+const logger = require('./middleware/middleware.logger')
 
 app.get('/', (req, res) => {
   res.write('<h1>Home page</h1>')
@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
 app.use('/employees', require('./router/router.employee'))
 app.use('/customers', require('./router/router.customer'))
-app.use('/users', require('./router/router.user'))
+app.use('/users', logger, require('./router/router.user'))
 app.use('/files', require('./router/router.file'))
 
 app.use((req, res) => {
