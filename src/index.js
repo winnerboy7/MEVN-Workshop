@@ -7,6 +7,7 @@ app.use(express.urlencoded({ extended: true}))
 app.use(express.json())
 
 const logger = require('./middleware/middleware.logger')
+const auth = require('./middleware/middleware.auth')
 
 app.get('/', (req, res) => {
   res.write('<h1>Home page</h1>')
@@ -14,8 +15,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/employees', require('./router/router.employee'))
-app.use('/customers', require('./router/router.customer'))
-app.use('/users', logger, require('./router/router.user'))
+app.use('/customers', logger, require('./router/router.customer'))
+app.use('/users', auth, require('./router/router.user'))
 app.use('/files', require('./router/router.file'))
 
 app.use((req, res) => {
